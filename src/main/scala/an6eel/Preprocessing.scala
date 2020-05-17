@@ -1,8 +1,6 @@
 package main.scala.an6eel
 
-import org.apache.spark.mllib.feature.HME_BD
-import org.apache.spark.mllib.regression.LabeledPoint
-import org.apache.spark.rdd.RDD
+import org.apache.spark.mllib.feature.{HME_BD, FCNN_MR, RNG_BD}
 
 object Preprocess extends scala.AnyRef{
 
@@ -54,6 +52,25 @@ object Preprocess extends scala.AnyRef{
     cleanData
   }
 
+  def RNG_BD(train: DataSet): DataSet = {
+    val order = true
+    val selType = order
+    val model = new RNG_BD(train, order, selType)
+    val cleanData = model.runFilter()
+    cleanData.persist
+    cleanData.count
+    cleanData
+  }
+
+  def FCNN_MR(train: DataSet): DataSet = {
+    val k = 5
+    val model = new FCNN_MR(train, k)
+    val cleanData = model.runPR()
+    cleanData.persist
+    cleanData.count
+    cleanData
+  }
+
   def ROS_HME_BD(train: DataSet, overRate: Double): DataSet = {
     val sampled = ROS(train, overRate)
     HME_BD(sampled)
@@ -64,15 +81,41 @@ object Preprocess extends scala.AnyRef{
     HME_BD(sampled)
   }
 
+  def ROS_RNG_BD(train:DataSet, overRate: Double): DataSet = {
+    val sampled = ROS(train, overRate)
+    RNG_BD(sampled)
+  }
+
+  def RUS_RNG_BD(train: DataSet): DataSet = {
+    val sampled = RUS(train)
+    RNG_BD(sampled)
+  }
+
+  def ROS_FCNN(train:DataSet, overRate: Double): DataSet = {
+    val sampled = ROS(train, overRate)
+    FCNN_MR(sampled)
+  }
+
+  def RUS_FCNN(train: DataSet): DataSet = {
+    val sampled = RUS(train)
+    FCNN_MR(sampled)
+  }
+
   def defaultPreprocess(train: DataSet): DataSet = train
 
-  def apply(name: String, overRate: Double = 1.0) = (data: RDD[LabeledPoint]) => {
+  def apply(name: String, overRate: Double = 1.0) = (data: DataSet) => {
     name match {
       case "ROS" => ROS(data, overRate)
       case "RUS" => RUS(data)
       case "HME_BD" => HME_BD(data)
+      case "RNG_ND" => RNG_BD(data)
+      case "FCNN_MR" => FCNN_MR(data)
       case "ROS+HME" => ROS_HME_BD(data, overRate)
       case "RUS+HME" => RUS_HME_BD(data)
+      case "ROS+RNG" => ROS_RNG_BD(data, overRate)
+      case "RUS+RNG" => RUS_RNG_BD(data)
+      case "ROS+FCNN" => ROS_FCNN(data, overRate)
+      case "RUS+FCNN" => RUS_FCNN(data)
       case _ => defaultPreprocess(data)
     }
   }
