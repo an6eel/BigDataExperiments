@@ -76,6 +76,7 @@ object Experiment {
             sample: Double = 1.0) = {
     val conf = new SparkConf().setAppName(jobName)
     val context = new SparkContext(conf)
+    context.setLogLevel(logLevel)
 
     new Experiment(context, trainPath, testPath, classifier, balancer, sample)
   }

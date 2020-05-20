@@ -41,7 +41,7 @@
 
 ### Random Forest
 
-*Parameters by default*
+*Parameters*
 
 - numTrees = 300
 - Impurity = gini
@@ -51,10 +51,10 @@
 
 ### GradientBoosted Trees
 
-*Parameters by default*
+*Parameters*
 
-- numIterations = 500
-- maxDepth = 20
+- numIterations = 250
+- maxDepth = 10
 
 ### ROS OverRate = 1.0
 

@@ -4,7 +4,7 @@ experiment=${1:-1}
 
 VERSION=${2:-1.0}
 
-if [ $LOGNAME == "x76592732H" ]
+if [ $LOGNAME == "x76592732" ]
 then
   /opt/spark-2.2.0/bin/spark-submit \
   --total-executor-cores 15 --executor-memory 10g \
