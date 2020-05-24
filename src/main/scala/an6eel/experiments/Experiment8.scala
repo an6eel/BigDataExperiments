@@ -7,10 +7,10 @@ import main.scala.an6eel._
 object Experiment8 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "RF-HME-BD-full-10D-32B-300T"
+    val jobName = "RF-FCNN_MR-full-10D-32B-300T"
     val errorLevel = "ERROR"
     val classifierName = "RandomForest"
-    val balancerName = "HME_BD"
+    val balancerName = "FCNN_MR"
 
     val classifierParams = Map[String, String](
       "depth" -> "10",

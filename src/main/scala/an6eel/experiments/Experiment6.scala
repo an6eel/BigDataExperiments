@@ -7,19 +7,18 @@ import main.scala.an6eel._
 object Experiment6 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "RF-ROS-full-1.0-10D-32B-500T"
+    val jobName = "RF-RNG_ND-full-1.0-10D-32B-300T"
     val errorLevel = "ERROR"
     val classifierName = "RandomForest"
-    val balancerName = "ROS"
-    val overRate = 1.0
+    val balancerName = "RNG_ND"
 
     val classifierParams = Map[String, String](
       "depth" -> "10",
       "bins" -> "32",
-      "trees" -> "500"
+      "trees" -> "300"
     )
     val classifier = Classifier(classifierName, classifierParams)
-    val preprocess = Preprocess(balancerName, overRate)
+    val preprocess = Preprocess(balancerName)
 
     val firstExperiment = Experiment(jobName, errorLevel, pathTrain, pathTest, classifier, preprocess, sample)
 
