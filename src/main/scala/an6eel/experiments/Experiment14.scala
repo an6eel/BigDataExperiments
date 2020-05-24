@@ -7,7 +7,7 @@ import main.scala.an6eel._
 object Experiment14 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "GBT-ROS-HME-BD-full-1.0-10D-250I"
+    val jobName = "GBT-ROS-HME-BD-full-1.0-5D-300I"
     val errorLevel = "ERROR"
     val classifierName = "GradientBoosted"
     val balancerName = "ROS+HME"
