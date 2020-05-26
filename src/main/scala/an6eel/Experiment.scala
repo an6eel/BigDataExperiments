@@ -5,16 +5,18 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 
-class Experiment(context: SparkContext,
-                 trainPath: String,
-                 testPath: String,
-                 classifier: Classifier,
-                 preprocess: PreprocessFunction,
-                 sample: Double = 1.0 ) {
+class Experiment(
+    context: SparkContext,
+    trainPath: String,
+    testPath: String,
+    classifier: Classifier,
+    preprocess: PreprocessFunction,
+    sample: Double = 1.0
+) {
 
   private def loadTrainData(): DataSet = {
     val rawDataTrain = sample match {
-      case 1.0 => context.textFile(trainPath).repartition(120)
+      case 1.0 => context.textFile(trainPath)
       case _ => context.textFile(trainPath).sample(false,sample)
     }
 
