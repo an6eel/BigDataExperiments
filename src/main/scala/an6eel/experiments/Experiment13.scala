@@ -7,14 +7,14 @@ import main.scala.an6eel._
 object Experiment13 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "GBT-HME-BD-full-5D-250I"
+    val jobName = "GBT-RUS-full-5D-400I"
     val errorLevel = "ERROR"
     val classifierName = "GradientBoosted"
-    val balancerName = "HME_BD"
+    val balancerName = "RUS"
 
     // maxDepth -> 20 Iters -> 500
     val classifierParams = Map[String, String](
-      "iters" -> "250"
+      "iters" -> "400"
     )
     val classifier = Classifier(classifierName, classifierParams)
     val preprocess = Preprocess(balancerName)

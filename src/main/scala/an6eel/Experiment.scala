@@ -16,7 +16,7 @@ class Experiment(
 
   private def loadTrainData(): DataSet = {
     val rawDataTrain = sample match {
-      case 1.0 => context.textFile(trainPath)
+      case 1.0 => context.textFile(trainPath).repartition(120)
       case _ => context.textFile(trainPath).sample(false,sample)
     }
 

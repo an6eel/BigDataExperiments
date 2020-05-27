@@ -7,7 +7,7 @@ import main.scala.an6eel._
 object Experiment10 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "RF-RUS+FCNN-full-10D-32B-700T"
+    val jobName = "RF-RUS+FCNN-full-5D-32B-900T-K10"
     val errorLevel = "ERROR"
     val classifierName = "RandomForest"
     val balancerName = "RUS+FCNN"
@@ -15,7 +15,7 @@ object Experiment10 {
     val classifierParams = Map[String, String](
       "depth" -> "10",
       "bins" -> "32",
-      "trees" -> "700"
+      "trees" -> "900"
     )
     val classifier = Classifier(classifierName, classifierParams)
     val preprocess = Preprocess(balancerName)

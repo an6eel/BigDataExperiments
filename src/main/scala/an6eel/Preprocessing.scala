@@ -41,9 +41,9 @@ object Preprocess extends scala.AnyRef{
   }
 
   def HME_BD(train: DataSet): DataSet = {
-    val nTrees = 100
-    val maxDepthRF = 10
-    val partition = 4
+    val nTrees = 200
+    val maxDepthRF = 5
+    val partition = 10
 
     val model = new HME_BD(train, nTrees, partition, maxDepthRF, 48151623)
     val cleanData = model.runFilter()
@@ -63,7 +63,7 @@ object Preprocess extends scala.AnyRef{
   }
 
   def FCNN_MR(train: DataSet): DataSet = {
-    val k = 5
+    val k = 10
     val model = new FCNN_MR(train, k)
     val cleanData = model.runPR()
     cleanData.persist

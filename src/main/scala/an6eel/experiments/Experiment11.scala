@@ -7,17 +7,16 @@ import main.scala.an6eel._
 object Experiment11 {
   def main(arg: Array[String]): Unit = {
 
-    val jobName = "GBT-ROS-full-1.0-5D-250I"
+    val jobName = "GBT-RUS-full-1.0-5D-300I"
     val errorLevel = "ERROR"
     val classifierName = "GradientBoosted"
-    val balancerName = "ROS"
-    val overRate = 1.0
+    val balancerName = "RUS"
 
     val classifierParams = Map[String, String](
       "iters" -> "250"
     )
     val classifier = Classifier(classifierName, classifierParams)
-    val preprocess = Preprocess(balancerName, overRate)
+    val preprocess = Preprocess(balancerName)
 
     val firstExperiment = Experiment(jobName, errorLevel, pathTrain, pathTest, classifier, preprocess, sample)
 
