@@ -63,7 +63,7 @@ object Preprocess extends scala.AnyRef{
   }
 
   def FCNN_MR(train: DataSet): DataSet = {
-    val k = 10
+    val k = 5
     val model = new FCNN_MR(train, k)
     val cleanData = model.runPR()
     cleanData.persist
